@@ -15,8 +15,13 @@ class Poll
 
   def set_id
     # TODO
+    # Need a good algorithm to set poll ids
+    # May be solved by using a database...
     1
   end
+end
+
+class PollOption
 end
 
 class Vote
