@@ -1,10 +1,11 @@
 require_relative 'poll.rb'
 
 class User
-  def initialize(name)
+  def initialize(name, admin: false)
     @name = name
     @polls = []
     @votes = {}
+    @admin = admin
   end
 
   attr_reader :name
@@ -16,11 +17,5 @@ class User
 
   def votes
     # How to make it so only admins can view votes?
-  end
-end
-
-class Admin < User
-  def show_user_votes(user)
-    user.votes
   end
 end
