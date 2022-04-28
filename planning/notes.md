@@ -21,3 +21,26 @@
   - Provide write-in option?
   - Maybe users can submit a comment that won't be displayed, but will go to
     admins?
+
+
+## Class Structure
+
+### Users
+
+**Users will have**:
+  - A unique ID
+  - A name
+  - A list of polls created
+  - A list of votes (accessible only by admins and that user)
+  - An `@admin` flag
+
+### Polls
+
+**Polls will have**:
+  - A unique ID
+  - A name
+  - Some number of options
+  - A creator
+  - A date created
+  - An end date
+  - A status (open or closed)

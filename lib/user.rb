@@ -2,6 +2,7 @@ require_relative 'poll.rb'
 
 class User
   def initialize(name, admin: false)
+    @id = set_id
     @name = name
     @polls = []
     @votes = {}
@@ -17,5 +18,13 @@ class User
 
   def votes
     # How to make it so only admins can view votes?
+  end
+
+  private
+
+  def set_id
+    # TODO
+    # Need a good algorithm to set poll ids
+    # May be solved by using a database...
   end
 end

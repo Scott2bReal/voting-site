@@ -1,4 +1,5 @@
 require_relative 'user.rb'
+require 'date'
 
 class Poll
   def initialize(name, options=[], creator)
@@ -6,10 +7,24 @@ class Poll
     @name = name
     @options = options # array of PollOptions
     @creator = creator # User object
+    @date_created = Time.now
+    @status = 'open'
   end
 
-  attr_reader :id, :name, :creator
+  attr_reader :id, :name, :creator, :status
   attr_accessor :options
+
+  def open?
+    @status == 'open'
+  end
+
+  def close
+    @status == 'closed'
+  end
+
+  def set_end_date
+    # Users should be able to set an end date
+  end
 
   private
 
