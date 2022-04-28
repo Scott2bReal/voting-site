@@ -20,6 +20,10 @@ class User
     # How to make it so only admins can view votes?
   end
 
+  def admin?
+    @admin
+  end
+
   private
 
   def set_id

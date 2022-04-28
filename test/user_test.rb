@@ -14,4 +14,12 @@ class UserTest < Minitest::Test
     assert_equal "Test", @test_user.name
     assert_equal "Test Admin", @test_admin.name
   end
+
+  def test_admins_are_admins
+    assert_equal true, @test_admin.admin?
+  end
+
+  def test_regular_users_are_not_admin
+    assert_equal false, @test_user.admin?
+  end
 end
