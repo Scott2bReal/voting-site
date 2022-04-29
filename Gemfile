@@ -13,3 +13,5 @@ gem 'rake'
 
 gem 'bcrypt'
 gem 'yaml'
+
+gem 'require_all'

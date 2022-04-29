@@ -1,4 +1,5 @@
 # require_relative 'poll.rb'
+require 'yaml'
 
 class User
   def initialize(name, admin: false)
@@ -22,6 +23,18 @@ class User
 
   def admin?
     @admin
+  end
+
+  def to_yaml
+    hash = {
+      id: @id,
+      name: @name,
+      polls: @polls,
+      votes: @votes,
+      admin: @admin
+    }
+
+    hash.to_yaml
   end
 
   private

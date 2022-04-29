@@ -2,11 +2,11 @@
 require 'sinatra'
 require 'sinatra/reloader' if development?
 require 'tilt/erubis'
+require 'require_all'
+require 'yaml'
 
 # Custom class dependencies
-require_relative 'lib/poll.rb'
-require_relative 'lib/user.rb'
-
+require_all 'lib'
 
 def user_path
   if ENV['RACK_ENV'] == 'test'
@@ -30,6 +30,12 @@ end
 def load_user_data
 end
 
+def create_user_record(user)
+  File.open('users/users.yml', 'w') do |file|
+    file.write(user.to_yaml)
+  end
+end
+
 configure do
   enable :sessions
   set :session_secret, 'secret'
@@ -49,7 +55,6 @@ end
 
 # Display list of polls
 get '/polls' do
-  # @polls << Poll.new(1, 'New Poll')
   erb :polls
 end
 
