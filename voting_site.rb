@@ -7,13 +7,39 @@ require 'tilt/erubis'
 require_relative 'lib/poll.rb'
 require_relative 'lib/user.rb'
 
+
+def user_path
+  if ENV['RACK_ENV'] == 'test'
+    File.expand_path('../test/users', __FILE__)
+  else
+    File.expand_path('../users', __FILE__)
+  end
+end
+
+def poll_path
+  if ENV['RACK_ENV'] == 'test'
+    File.expand_path('../test/polls', __FILE__)
+  else
+    File.expand_path('../polls', __FILE__)
+  end
+end
+
+def load_poll_data
+end
+
+def load_user_data
+end
+
 configure do
   enable :sessions
   set :session_secret, 'secret'
 end
 
 before do
-  @polls = [Poll.new(1, 'New Poll')]
+  @root = File.expand_path('..', __FILE__)
+  # @polls = load_poll_data
+  # @users = load_user_data
+  @polls = [Poll.new('Test poll', [PollOption.new, PollOption.new], User.new('Test User'))]
 end
 
 # Display homepage
