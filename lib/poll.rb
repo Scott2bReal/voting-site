@@ -11,7 +11,7 @@ class Poll
     @status = 'open'
   end
 
-  attr_reader :id, :name, :creator, :status
+  attr_reader :id, :name, :creator, :status, :date_created
   attr_accessor :options
 
   def open?
@@ -23,7 +23,8 @@ class Poll
   end
 
   def set_end_date
-    # Users should be able to set an end date
+    # Users should be able to set an end date upon creation
+    # Admins should be able to close polls early
   end
 
   private
@@ -37,6 +38,15 @@ class Poll
 end
 
 class PollOption
+  # Not sure what exactly would be useful here
+  # Starting out with simple 'yes' or 'no'
+  def vote_yes
+    @vote = 'yes'
+  end
+
+  def vote_no
+    @vote = 'no'
+  end
 end
 
 class Vote

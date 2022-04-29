@@ -1,4 +1,4 @@
-require_relative 'poll.rb'
+# require_relative 'poll.rb'
 
 class User
   def initialize(name, admin: false)

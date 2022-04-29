@@ -1,5 +1,6 @@
 require 'minitest/autorun'
 require 'minitest/reporters'
+require 'date'
 Minitest::Reporters.use!
 
 require_relative '../lib/poll.rb'
@@ -21,5 +22,11 @@ class PollTest < Minitest::Test
     poll = @test_user.create_poll('test_poll', ['option1', 'option2'])
 
     assert_equal @test_user, poll.creator
+  end
+
+  def test_poll_saves_creation_date
+    poll = @test_user.create_poll('test', [])
+
+    assert_equal Date.today, poll.date_created.to_date
   end
 end

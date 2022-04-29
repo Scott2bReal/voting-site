@@ -44,3 +44,7 @@
   - A date created
   - An end date
   - A status (open or closed)
+
+## Questions
+
+- When should results be shown?
