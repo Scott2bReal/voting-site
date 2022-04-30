@@ -2,6 +2,8 @@
 require 'yaml'
 
 class User
+  @@ids_in_use = []
+
   def initialize(name, admin: false)
     @id = set_id
     @name = name
@@ -17,12 +19,12 @@ class User
     Poll.new(poll_name, options, self)
   end
 
-  def votes
-    # How to make it so only admins can view votes?
-  end
-
   def admin?
     @admin
+  end
+
+  def make_admin
+    @admin = true
   end
 
   def to_yaml
@@ -37,11 +39,17 @@ class User
     hash.to_yaml
   end
 
+  def see_votes(other_user)
+    # How to make it so only admins can view votes?
+    if self.admin?
+    else
+    end
+  end
+
   private
 
   def set_id
-    # TODO
-    # Need a good algorithm to set poll ids
     # May be solved by using a database...
+    @@ids_in_use.empty? ? @@ids_in_use << 0 : @@ids_in_use << (@@ids_in_use.max + 1)
   end
 end
