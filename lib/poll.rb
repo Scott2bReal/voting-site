@@ -2,13 +2,14 @@ require_relative 'user.rb'
 require 'date'
 
 class Poll
-  def initialize(name, options=[], creator)
+  def initialize(name, options=[], creator, votes_private: false)
     @id = set_id
     @name = name
     @options = options # array of PollOptions
     @creator = creator # User object
     @date_created = Time.now
     @status = 'open'
+    @votes_private = votes_private
   end
 
   attr_reader :id, :name, :creator, :status, :date_created
@@ -22,9 +23,17 @@ class Poll
     @status == 'closed'
   end
 
+  def votes_private?
+    @votes_private
+  end
+
   def set_end_date
     # Users should be able to set an end date upon creation
     # Admins should be able to close polls early
+  end
+
+  def description
+    "Authored by #{self.creator} on"
   end
 
   private

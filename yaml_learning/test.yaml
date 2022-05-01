@@ -1,0 +1,6 @@
+--- !ruby/object:User
+id: 0
+name: test
+polls: []
+votes: {}
+admin: false

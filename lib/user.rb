@@ -4,16 +4,21 @@ require 'yaml'
 class User
   @@ids_in_use = []
 
-  def initialize(name, admin: false)
+  def initialize(name, password_hash, admin: false)
     @id = set_id
     @name = name
     @polls = []
     @votes = {}
     @admin = admin
+    @password_hash = password_hash
   end
 
-  attr_reader :name
+  attr_reader :id, :name, :password_hash
   attr_accessor :polls
+
+  def ==(other_user)
+    self.id == other_user.id
+  end
 
   def create_poll(poll_name, options)
     Poll.new(poll_name, options, self)
@@ -23,33 +28,28 @@ class User
     @admin
   end
 
-  def make_admin
-    @admin = true
+  def toggle_admin
+    @admin = !self.admin?
   end
 
-  def to_yaml
-    hash = {
-      id: @id,
-      name: @name,
-      polls: @polls,
-      votes: @votes,
-      admin: @admin
-    }
+  # def to_yaml
+  #   hash = {
+  #     id: @id,
+  #     name: @name,
+  #     polls: @polls,
+  #     votes: @votes,
+  #     admin: @admin
+  #   }
 
-    hash.to_yaml
-  end
-
-  def see_votes(other_user)
-    # How to make it so only admins can view votes?
-    if self.admin?
-    else
-    end
-  end
+  #   hash.to_yaml
+  # end
 
   private
 
   def set_id
     # May be solved by using a database...
-    @@ids_in_use.empty? ? @@ids_in_use << 0 : @@ids_in_use << (@@ids_in_use.max + 1)
+    id = @@ids_in_use.empty? ? 0 : (@@ids_in_use.max + 1)
+    @@ids_in_use << id
+    id
   end
 end

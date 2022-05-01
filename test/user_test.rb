@@ -22,4 +22,12 @@ class UserTest < Minitest::Test
   def test_regular_users_are_not_admin
     assert_equal false, @test_user.admin?
   end
+
+  def test_admin_toggle_works
+    assert_equal false, @test_user.admin?
+
+    @test_user.toggle_admin
+
+    assert_equal true, @test_user.admin?
+  end
 end

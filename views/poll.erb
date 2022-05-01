@@ -1,1 +1,15 @@
-<h2><%= @poll.name %></h2>
+<h1><%= @poll.name %></h1>
+
+<p>
+  Authored by <%= @poll.creator.name %> <%= @poll.date_created.strftime "on %m-%d-%Y at %H:%M:%S" %>
+</p>
+<p>Status: <%= @poll.status %></p>
+
+<table>
+  <tr>
+    <% if !@poll.votes_private? %>
+      <th>User</th>
+      <th>Vote</th>
+    <% end %>
+  </tr>
+</table>
