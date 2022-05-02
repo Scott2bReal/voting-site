@@ -6,8 +6,8 @@ require_relative '../lib/user.rb'
 
 class UserTest < Minitest::Test
   def setup
-    @test_user = User.new("Test")
-    @test_admin = User.new("Test Admin", admin: true)
+    @test_user = User.new("Test", 'hash')
+    @test_admin = User.new("Test Admin", 'hash', admin: true)
   end
 
   def test_users_have_names

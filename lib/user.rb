@@ -20,9 +20,10 @@ class User
     self.id == other_user.id
   end
 
-  def create_poll(poll_name, options)
-    Poll.new(poll_name, options, self)
-  end
+  # def create_poll(poll_name, options)
+  #   Poll.new(poll_name, options, self)
+  #   log a poll in self's history
+  # end
 
   def admin?
     @admin

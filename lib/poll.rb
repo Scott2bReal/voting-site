@@ -2,11 +2,11 @@ require_relative 'user.rb'
 require 'date'
 
 class Poll
-  def initialize(name, options=[], creator, votes_private: false)
+  def initialize(name, creator, options=[], votes_private: false)
     @id = set_id
     @name = name
-    @options = options # array of PollOptions
     @creator = creator # User object
+    @options = options # array of PollOptions
     @date_created = Time.now
     @status = 'open'
     @votes_private = votes_private

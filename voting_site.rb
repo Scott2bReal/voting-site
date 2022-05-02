@@ -77,7 +77,7 @@ before do
   @root = File.expand_path('..', __FILE__)
   # @polls = load_poll_data
   @users = load_user_data
-  @polls = [Poll.new('Test poll', [PollOption.new, PollOption.new], User.new('Test User'), votes_private: true)] 
+  @polls = [Poll.new('Test poll', [PollOption.new, PollOption.new], User.new('Test User', create_bcrypt_password('password')), votes_private: true)] 
 end
 
 # Display homepage
